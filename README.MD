@@ -2,16 +2,15 @@
 
 ## Overview
 
-This Bash script combines the contents of all files with specified
-extensions in the current directory (and its subdirectories) into one
-single text file. It is designed to be run from **Git Bash** on Windows.
+This Bash script combines the contents of all files with specified extensions in the current directory (and its subdirectories) into one single text file. It is designed to be run from **Git Bash** on Windows.
 
-The script: - Asks you which file extensions to include (for example:
-`jsx`, `css`). - Recursively collects all matching files. - Skips the
-`node_modules` directory. - Writes each file's **relative path**,
-followed by its **contents**, separated by blank lines. - Saves
-everything into a file named after the current directory and chosen
-extensions, like: `contents-of-lv3capstone-jsx-css.txt`
+The script:
+
+- Asks you which file extensions to include (for example: `jsx`, `css`).
+- Recursively collects all matching files.
+- Skips the `node_modules` directory.
+- Writes each file's **relative path**, followed by its **contents**, separated by blank lines.
+- Saves everything into a file named after the current directory and chosen extensions, like: `contents-of-lv3capstone-jsx-css.txt`
 
 ---
 
@@ -24,8 +23,7 @@ If your project structure looks like this:
     src/components/Navbar.jsx
     src/components/Navbar.css
 
-and you choose the extensions `jsx` and `css`, the generated file will
-look like:
+and you choose the extensions `jsx` and `css`, the generated file will look like:
 
     src/App.jsx
 
@@ -92,13 +90,12 @@ look like:
 3.  Enter extensions when prompted (without the dot):
 
     ```bash
-    Extension to include (or 'no more'): jsx
-    Extension to include (or 'no more'): css
-    Extension to include (or 'no more'): no more
+    Extension to include (or '-' for no more): jsx
+    Extension to include (or '-' for no more): css
+    Extension to include (or '-' for no more): -
     ```
 
-4.  The script will collect matching files (excluding `node_modules`)
-    and create an output file like:
+4.  The script will collect matching files (excluding `node_modules`) and create an output file like:
 
         contents-of-myproject-jsx-css.txt
 
@@ -109,8 +106,7 @@ look like:
 - Recursively processes files in the current directory.
 - Automatically skips the `node_modules` folder.
 - Uses clear formatting between files.
-- Automatically names the output file based on the current directory
-  and selected extensions.
+- Automatically names the output file based on the current directory and selected extensions.
 - Safe and idempotent: existing output file is replaced safely.
 
 ---
@@ -121,10 +117,10 @@ look like:
 $ cd /c/Users/Administrator/projects/lv3-capstone
 $ combine-files.sh
 This script will combine file contents from the current directory (recursively).
-Enter extensions to include (without the dot). Type 'no more' when finished.
-Extension to include (or 'no more'): jsx
-Extension to include (or 'no more'): css
-Extension to include (or 'no more'): no more
+Enter extensions to include (without the dot). Type '-' when finished.
+Extension to include (or '-' for no more): jsx
+Extension to include (or '-' for no more): css
+Extension to include (or '-' for no more): -
 Collecting files (excluding node_modules)...
 Done. Wrote: contents-of-lv3capstone-jsx-css.txt
 ```
