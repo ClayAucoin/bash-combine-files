@@ -2,16 +2,16 @@
 set -euo pipefail
 
 echo "This script will combine file contents from the current directory (recursively)."
-echo "Enter extensions to include (without the dot). Type '~' when finished."
+echo "Enter extensions to include (without the dot). Type '-' when finished."
 
 # --- collect extensions ---
 extensions=()
 while true; do
-  read -rp "Extension to include (or '~' for no more): " ext_raw
+  read -rp "Extension to include (or '-' for no more): " ext_raw
   ext_trimmed="${ext_raw#"${ext_raw%%[![:space:]]*}"}"   # ltrim
   ext_trimmed="${ext_trimmed%"${ext_trimmed##*[![:space:]]}"}"   # rtrim
   ext_lower=$(printf "%s" "$ext_trimmed" | tr '[:upper:]' '[:lower:]')
-  if [[ "$ext_lower" == "~" ]]; then
+  if [[ "$ext_lower" == "-" ]]; then
     break
   fi
   ext="${ext_lower#.}"  # remove leading dot if present
