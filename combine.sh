@@ -41,9 +41,13 @@ for e in "${extensions[@]}"; do
 done
 expr=( "${expr[@]:1}" )  # drop the first -o
 
-echo "Collecting files (excluding node_modules)..."
+echo "Collecting files (excluding node_modules and coverage)..."
 # shellcheck disable=SC2207
-mapfile -d '' files < <(find . -type d -name node_modules -prune -o -type f \( "${expr[@]}" \) -print0 | sort -z)
+mapfile -d '' files < <(
+  find . \
+    -type d \( -name node_modules -o -name coverage \) -prune -o \
+    -type f \( "${expr[@]}" \) -print0 | sort -z
+)
 
 if (( ${#files[@]} == 0 )); then
   echo "No matching files found for: ${extensions[*]}"
